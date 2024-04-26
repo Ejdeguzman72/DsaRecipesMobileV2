@@ -3,6 +3,14 @@ import { ScrollView, Text, View, TouchableOpacity, StyleSheet } from 'react-nati
 import RecipeCard from './components/RecipeCard';
 import recipeJson from './json/recipes';
 import LandingScreen from './components/LandingScreen';
+import * as AWS from 'aws-sdk'
+import Config from 'react-native-config';
+
+AWS.config.update({
+  accessKeyId: 'AKIARQOQA4S27VTS63VY',
+  secretAccessKey: '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',
+  region: 'us-east-1'
+})
 
 const App = () => {
   const jsonData = recipeJson;
