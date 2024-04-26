@@ -7,9 +7,19 @@ import * as AWS from 'aws-sdk'
 import Config from 'react-native-config';
 
 AWS.config.update({
-  accessKeyId: 'AKIARQOQA4S27VTS63VY',
-  secretAccessKey: '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',
-  region: 'us-east-1'
+  accessKeyId: 'AWS_ACCESS_KEY',
+  secretAccessKey: 'AWS_SECRET_KEY',
+  region: 'AWS_REGION'
+})
+
+const s3 = new AWS.S3();
+
+s3.listObjects({ Bucket: '' }, (err, data) => {
+  if (err) {
+    console.log('Error:', err);
+  } else {
+    console.log(data);
+  }
 })
 
 const App = () => {
