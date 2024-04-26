@@ -4,7 +4,6 @@ import RecipeCard from './components/RecipeCard';
 import recipeJson from './json/recipes';
 import LandingScreen from './components/LandingScreen';
 import * as AWS from 'aws-sdk'
-import Config from 'react-native-config';
 
 AWS.config.update({
  
