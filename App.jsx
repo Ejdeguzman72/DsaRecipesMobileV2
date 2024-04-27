@@ -27,8 +27,14 @@ const App = () => {
       };
 
       const data = await s3.getObject(params).promise();
-      const jsonData = JSON.parse(data.toString());
-      setRecipeJsonData(jsonData);
+      const recipeJsonData = JSON.parse(data.toString());
+
+      if (recipeJsonData == null) {
+        setRecipeJsonData(jsonData);
+      } else {
+        setRecipeJsonData(recipeJsonData);
+      }
+
     } catch (error) {
       console.log(`Error fetching JSON data: `, error);
     }
