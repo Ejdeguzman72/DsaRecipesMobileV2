@@ -1,28 +1,42 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { ScrollView, Text, View, TouchableOpacity, StyleSheet } from 'react-native';
 import RecipeCard from './components/RecipeCard';
 import recipeJson from './json/recipes';
 import LandingScreen from './components/LandingScreen';
-import * as AWS from 'aws-sdk'
+import AWS from 'aws-sdk'
 
 AWS.config.update({
- 
+  accessKeyId: `${process.env.AWS_ACCESSY_KEY}`,
+  secretAccessKey: `${process.env.AWS_SECRET_KEY}`,
+  region: `${process.env.AWS_REGION}`
 })
 
 const s3 = new AWS.S3();
 
-s3.listObjects({ Bucket: '' }, (err, data) => {
-  if (err) {
-    console.log('Error:', err);
-  } else {
-    console.log(data);
-  }
-})
-
 const App = () => {
   const jsonData = recipeJson;
+  const [recipeJsonData, setRecipeJsonData] = useState(null);
   const [landingPageVisible, setLandingPageVisible] = useState(true);
   const [recipesVisible, setRecipesVisible] = useState(false);
+
+  const fetchJsonData = async () => {
+    try {
+      const params = {
+        Bucket: `${process.env.DSA_RECIPE_BUCKET_NAME}`,
+        Key: `${process.env.DAS_RECIPE_JSON_FILE}`
+      };
+
+      const data = await s3.getObject(params).promise();
+      const jsonData = JSON.parse(data.toString());
+      setRecipeJsonData(jsonData);
+    } catch (error) {
+      console.log(`Error fetching JSON data: `, error);
+    }
+  }
+
+  useEffect(() => {
+    fetchJsonData();
+  }, []);
 
   const handleButtonPress = () => {
     setLandingPageVisible(false);
@@ -36,9 +50,9 @@ const App = () => {
           <Text style={styles.buttonText}>DSA Recipes</Text>
         </TouchableOpacity>
       </View></>}
-      {recipesVisible && (
+      {recipesVisible && recipeJsonData && (
         <>
-          {jsonData.list.map((recipe, index) => (
+          {recipeJsonData.list.map((recipe, index) => (
             <RecipeCard key={index} recipe={recipe} />
           ))}
         </>
