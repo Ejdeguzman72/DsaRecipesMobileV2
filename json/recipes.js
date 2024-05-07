@@ -1,5 +1,4 @@
-const jsonData = {
-    "list": [
+[
         {
             "recipeId": 36,
             "name": "Adobo",
@@ -1291,6 +1290,3 @@ const jsonData = {
             "descr": "ASIAN"
         }
     ]
-}
-
-export default jsonData;

@@ -6,7 +6,7 @@ import LandingScreen from './components/LandingScreen';
 import AWS from 'aws-sdk'
 
 AWS.config.update({
-  accessKeyId: `${process.env.AWS_ACCESSY_KEY}`,
+  accessKeyId: `${process.env.API_ACCESS_KEY}`,
   secretAccessKey: `${process.env.AWS_SECRET_KEY}`,
   region: `${process.env.AWS_REGION}`
 })
@@ -22,19 +22,16 @@ const App = () => {
   const fetchJsonData = async () => {
     try {
       const params = {
-        Bucket: `${process.env.DSA_RECIPE_BUCKET_NAME}`,
-        Key: `${process.env.DAS_RECIPE_JSON_FILE}`
+        Bucket: `dsarecipemobile-bucket`,
+        Key: `dsarecipe.json`
       };
-
       const data = await s3.getObject(params).promise();
-      const recipeJsonData = JSON.parse(data.toString());
-
-      if (recipeJsonData == null) {
-        setRecipeJsonData(jsonData);
+      if (data != null) {
+        const recipeContents = JSON.parse(data.Body.toString());
+        setRecipeJsonData(recipeContents);
       } else {
-        setRecipeJsonData(recipeJsonData);
+        setRecipeJsonData(jsonData);
       }
-
     } catch (error) {
       console.log(`Error fetching JSON data: `, error);
     }
@@ -58,7 +55,7 @@ const App = () => {
       </View></>}
       {recipesVisible && recipeJsonData && (
         <>
-          {recipeJsonData.list.map((recipe, index) => (
+          {recipeJsonData.map((recipe, index) => (
             <RecipeCard key={index} recipe={recipe} />
           ))}
         </>
