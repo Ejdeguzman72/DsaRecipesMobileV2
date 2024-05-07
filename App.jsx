@@ -21,7 +21,6 @@ const App = () => {
 
   const fetchJsonData = async () => {
     try {
-      
       const params = {
         Bucket: `dsarecipemobile-bucket`,
         Key: `dsarecipe.json`
@@ -30,11 +29,11 @@ const App = () => {
       if (data != null) {
         const recipeContents = JSON.parse(data.Body.toString());
         setRecipeJsonData(recipeContents);
-      } 
-
+      } else {
+        setRecipeJsonData(jsonData);
+      }
     } catch (error) {
       console.log(`Error fetching JSON data: `, error);
-      setRecipeJsonData(jsonData);
     }
   }
 
