@@ -13,15 +13,13 @@ AWS.config.update({
 
 const s3 = new AWS.S3();
 
-const SlowCookerRecipesScreen = () => {
+const AmericanRecipesScreen = () => {
   const handleButtonPress = () => {
     setLandingPageVisible(false);
     setRecipesVisible(true);
 };
   const jsonData = recipeJson;
   const [recipeJsonData, setRecipeJsonData] = useState(null);
-  const [landingPageVisible, setLandingPageVisible] = useState(true);
-  const [recipesVisible, setRecipesVisible] = useState(false);
 
   const fetchJsonData = async () => {
     try {
@@ -49,7 +47,7 @@ const SlowCookerRecipesScreen = () => {
     return recipes.filter(recipe => recipe.recipeTypeId === typeId);
   };
 
-  const filteredRecipes = recipeJsonData ? filterRecipesByType(recipeJsonData, 4) : [];
+  const filteredRecipes = recipeJsonData ? filterRecipesByType(recipeJsonData, 2) : [];
 
   return (
     <ScrollView style={styles.background}>
@@ -88,4 +86,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default SlowCookerRecipesScreen;
+export default AmericanRecipesScreen;
