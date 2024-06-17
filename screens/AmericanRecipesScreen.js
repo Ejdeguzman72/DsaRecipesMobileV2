@@ -43,14 +43,20 @@ const AmericanRecipesScreen = () => {
     fetchJsonData();
   }, []);
 
+  const filterRecipesByType = (recipes, typeId) => {
+    return recipes.filter(recipe => recipe.recipeTypeId === typeId);
+  };
+
+  const filteredRecipes = recipeJsonData ? filterRecipesByType(recipeJsonData, 1) : [];
+
   return (
     <ScrollView style={styles.background}>
-      {recipeJsonData && (
-        <>
-          {recipeJsonData.map((recipe, index) => (
-            <RecipeCard key={index} recipe={recipe} />
-          ))}
-        </>
+      {filteredRecipes.length > 0 ? (
+        filteredRecipes.map((recipe, index) => (
+          <RecipeCard key={index} recipe={recipe} />
+        ))
+      ) : (
+        <Text style={styles.noRecipesText}>No recipes found</Text>
       )}
     </ScrollView>
   );
