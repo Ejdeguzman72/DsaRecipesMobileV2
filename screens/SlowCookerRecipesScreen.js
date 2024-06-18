@@ -49,7 +49,7 @@ const SlowCookerRecipesScreen = () => {
     return recipes.filter(recipe => recipe.recipeTypeId === typeId);
   };
 
-  const filteredRecipes = recipeJsonData ? filterRecipesByType(recipeJsonData, 4) : [];
+  const filteredRecipes = recipeJsonData ? filterRecipesByType(recipeJsonData, 11) : [];
 
   return (
     <ScrollView style={styles.background}>

@@ -49,7 +49,7 @@ const DesertRecipesScreen = () => {
     return recipes.filter(recipe => recipe.recipeTypeId === typeId);
   };
 
-  const filteredRecipes = recipeJsonData ? filterRecipesByType(recipeJsonData, 4) : [];
+  const filteredRecipes = recipeJsonData ? filterRecipesByType(recipeJsonData, 6) : [];
 
   return (
     <ScrollView style={styles.background}>
