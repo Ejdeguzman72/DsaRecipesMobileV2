@@ -49,7 +49,7 @@ const BarbequeRecipesScreen = () => {
     return recipes.filter(recipe => recipe.recipeTypeId === typeId);
   };
 
-  const filteredRecipes = recipeJsonData ? filterRecipesByType(recipeJsonData, 2) : [];
+  const filteredRecipes = recipeJsonData ? filterRecipesByType(recipeJsonData, 3) : [];
 
   return (
     <ScrollView style={styles.background}>
