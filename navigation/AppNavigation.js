@@ -16,6 +16,7 @@ import HispanicRecipesScreen from '../screens/HispanicRecipesScreen';
 import ItalianRecipesScreen from '../screens/ItalianRecipesScreen';
 import SeafoodRecipesScreen from '../screens/SeafoodRecipesScreen.';
 import SlowCookerRecipesScreen from '../screens/SlowCookerRecipesScreen';
+import AsianRecipesScreen from '../screens/AsianRecipesScreen';
 
 const Drawer = createDrawerNavigator();
 const Stack = createStackNavigator();
@@ -55,8 +56,9 @@ function DrawerNavigator() {
         drawerInactiveTintColor: 'gray',
       }}
     >
-      <Drawer.Screen name="DSARecipes" component={HomeScreen} />
+      <Drawer.Screen name="Home" component={HomeScreen} />
       <Drawer.Screen name="American Recipes" component={AmericanRecipesScreen} />
+      <Drawer.Screen name="Asian Recipes" component={AsianRecipesScreen} />
       <Drawer.Screen name="Barbeque Recipes" component={BarbequeRecipesScreen} />
       <Drawer.Screen name="Breakfeast Recipes" component={BreakfeastRecipesScreen} />
       <Drawer.Screen name="Comfort Food Recipes" component={ComfortFoodRecipesScreen} />

@@ -13,7 +13,7 @@ AWS.config.update({
 
 const s3 = new AWS.S3();
 
-const AmericanRecipesScreen = () => {
+const AsianRecipesScreen = () => {
   const handleButtonPress = () => {
     setLandingPageVisible(false);
     setRecipesVisible(true);
@@ -43,11 +43,12 @@ const AmericanRecipesScreen = () => {
     fetchJsonData();
   }, []);
 
-  const filterRecipesByType = (recipes, typeId) => {
-    return recipes.filter(recipe => recipe.recipeTypeId === typeId);
+  const filterRecipesByType = (recipes, description) => {
+    return recipes.filter(recipe => recipe.descr === description);
   };
 
-  const filteredRecipes = recipeJsonData ? filterRecipesByType(recipeJsonData, 2) : [];
+  let recipeDescr = 'ASIAN';
+  const filteredRecipes = recipeJsonData ? filterRecipesByType(recipeJsonData, recipeDescr) : [];
 
   return (
     <ScrollView style={styles.background}>
@@ -86,4 +87,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default AmericanRecipesScreen;
+export default AsianRecipesScreen;

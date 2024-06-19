@@ -45,11 +45,12 @@ const HispanicRecipesScreen = () => {
     fetchJsonData();
   }, []);
 
-  const filterRecipesByType = (recipes, typeId) => {
-    return recipes.filter(recipe => recipe.recipeTypeId === typeId);
+  const filterRecipesByType = (recipes, description) => {
+    return recipes.filter(recipe => recipe.descr === description);
   };
 
-  const filteredRecipes = recipeJsonData ? filterRecipesByType(recipeJsonData, 8) : [];
+  let recipeDescr = 'HISPANIC';
+  const filteredRecipes = recipeJsonData ? filterRecipesByType(recipeJsonData, recipeDescr) : [];
 
   return (
     <ScrollView style={styles.background}>

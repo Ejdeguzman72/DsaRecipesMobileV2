@@ -45,11 +45,12 @@ const SlowCookerRecipesScreen = () => {
     fetchJsonData();
   }, []);
 
-  const filterRecipesByType = (recipes, typeId) => {
-    return recipes.filter(recipe => recipe.recipeTypeId === typeId);
+  const filterRecipesByType = (recipes, description) => {
+    return recipes.filter(recipe => recipe.descr === description);
   };
 
-  const filteredRecipes = recipeJsonData ? filterRecipesByType(recipeJsonData, 11) : [];
+  let recipeTypeDescr = 'SLOW COOKER'
+  const filteredRecipes = recipeJsonData ? filterRecipesByType(recipeJsonData, recipeTypeDescr) : [];
 
   return (
     <ScrollView style={styles.background}>

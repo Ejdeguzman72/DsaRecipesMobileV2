@@ -45,11 +45,12 @@ const SeafoodRecipesScreen = () => {
     fetchJsonData();
   }, []);
 
-  const filterRecipesByType = (recipes, typeId) => {
-    return recipes.filter(recipe => recipe.recipeTypeId === typeId);
+  const filterRecipesByType = (recipes, description) => {
+    return recipes.filter(recipe => recipe.descr === description);
   };
 
-  const filteredRecipes = recipeJsonData ? filterRecipesByType(recipeJsonData, 10) : [];
+  let recipeTypeDescr = 'SEAFOOD';
+  const filteredRecipes = recipeJsonData ? filterRecipesByType(recipeJsonData, recipeTypeDescr) : [];
 
   return (
     <ScrollView style={styles.background}>

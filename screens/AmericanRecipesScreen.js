@@ -17,7 +17,7 @@ const AmericanRecipesScreen = () => {
   const handleButtonPress = () => {
     setLandingPageVisible(false);
     setRecipesVisible(true);
-};
+  };
   const jsonData = recipeJson;
   const [recipeJsonData, setRecipeJsonData] = useState(null);
 
@@ -43,11 +43,12 @@ const AmericanRecipesScreen = () => {
     fetchJsonData();
   }, []);
 
-  const filterRecipesByType = (recipes, typeId) => {
-    return recipes.filter(recipe => recipe.recipeTypeId === typeId);
+  const filterRecipesByDescr = (recipes, description) => {
+    return recipes.filter(recipe => recipe.descr === description);
   };
 
-  const filteredRecipes = recipeJsonData ? filterRecipesByType(recipeJsonData, 1) : [];
+  let americanRecipeDescr = 'American';
+  const filteredRecipes = recipeJsonData ? filterRecipesByDescr(recipeJsonData, americanRecipeDescr) : [];
 
   return (
     <ScrollView style={styles.background}>
