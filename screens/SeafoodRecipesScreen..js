@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { ScrollView, Text, View, TouchableOpacity, StyleSheet } from 'react-native';
 import RecipeCard from '../components/RecipeCard';
-import recipeJson from '../json/recipes';
+import recipeJson from '../json/recipes.json';
 import LandingScreen from './LandingScreen';
 import AWS from 'aws-sdk'
+import {AWS_ACCESS_KEY,AWS_SECRET_KEY,AWS_BUCKET_NAME,AWS_RECIPE_JSON_FILE,AWS_SDK_LOAD_CONFIG,AWS_REGION_NAME} from '@env';
 
 AWS.config.update({
-  accessKeyId: process.env.API_ACCESS_KEY,
-  secretAccessKey: process.env.AWS_SECRET_KEY,
-  region: process.env.AWS_REGION
+  accessKeyId: AWS_ACCESS_KEY,
+  secretAccessKey: AWS_SECRET_KEY,
+  region: process.env.AWS_REGION_NAME
 })
 
 const s3 = new AWS.S3();
@@ -26,8 +27,8 @@ const SeafoodRecipesScreen = () => {
   const fetchJsonData = async () => {
     try {
       const params = {
-        Bucket: process.env.AWS_BUCKET_NAME,
-        Key: process.env.AWS_RECIPE_JSON_FILE
+        Bucket: AWS_BUCKET_NAME,
+        Key: AWS_RECIPE_JSON_FILE
       };
       const data = await s3.getObject(params).promise();
       if (data != null) {
