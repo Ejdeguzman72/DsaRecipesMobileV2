@@ -4,11 +4,11 @@ import RecipeCard from '../components/RecipeCard';
 import recipeJson from '../json/recipes';
 import LandingScreen from './LandingScreen';
 import AWS from 'aws-sdk'
-import {AWS_ACCESS_KEY,AWS_SECRET_KEY,AWS_BUCKET_NAME,AWS_RECIPE_JSON_FILE,AWS_SDK_LOAD_CONFIG,AWS_REGION_NAME} from '@env';
+import {DSARECIPE_ACCESS_KEY,DSARECIPE_SECRET_KEY,AWS_BUCKET_NAME,AWS_RECIPE_JSON_FILE,AWS_SDK_LOAD_CONFIG,AWS_REGION_NAME} from '@env';
 
 AWS.config.update({
-  accessKeyId: AWS_ACCESS_KEY,
-  secretAccessKey: AWS_SECRET_KEY,
+  accessKeyId: DSARECIPE_ACCESS_KEY,
+  secretAccessKey: DSARECIPE_SECRET_KEY,
   region: AWS_REGION_NAME
 })
 
@@ -38,6 +38,7 @@ const HomeScreen = () => {
         setRecipeJsonData(jsonData);
       }
     } catch (error) {
+      setRecipeJsonData(jsonData);
       console.log(`Error fetching JSON data: `, error);
     }
   }
