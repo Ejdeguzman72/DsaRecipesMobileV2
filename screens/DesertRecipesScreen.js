@@ -6,8 +6,8 @@ import AWS from 'aws-sdk'
 import {DSARECIPE_ACCESS_KEY,DSARECIPE_SECRET_KEY,AWS_BUCKET_NAME,AWS_RECIPE_JSON_FILE,AWS_SDK_LOAD_CONFIG,AWS_REGION_NAME} from '@env';
 
 AWS.config.update({
-  accessKeyId: AWS_ACCESS_KEY,
-  secretAccessKey: AWS_SECRET_KEY,
+  accessKeyId: DSARECIPE_ACCESS_KEY,
+  secretAccessKey: DSARECIPE_SECRET_KEY,
   region: process.env.AWS_REGION_NAME
 })
 
